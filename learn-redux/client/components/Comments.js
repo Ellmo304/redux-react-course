@@ -7,16 +7,17 @@ return (
   <p>
   <strong>{comment.user}</strong>
   {comment.text}
-  <button className='remove-comment'>&times;</button>
+  <button className='remove-comment' onClick={this.props.removeComment.bind(null, this.props.params.postId, i)}>&times;</button>
   </p>
   </div>
 )  },
 handleSubmit(e) {
   e.preventDefault();
   const postId = this.props.params.postId;
-  const author = this.ref.author.value;
-  const comment = this.ref.comment.value;
+  const author = this.refs.author.value;
+  const comment = this.refs.comment.value;
   this.props.addComment(postId, author, comment);
+  this.refs.commentForm.reset();
 },
   render() {
     return (
